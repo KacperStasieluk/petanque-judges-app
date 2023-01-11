@@ -12,6 +12,7 @@ body {
 .loginGrid
 {
   place-self: center;
+  width: 20vw;
 }
 
 .registerPanel
@@ -90,11 +91,12 @@ body {
   grid-column: 1;
   grid-row: 6;
 
-  padding: 10px;
+  margin: 10px;
 
   background: linear-gradient(312deg, rgba(187,136,0,1) 0%, rgba(255,0,0,1) 100%);
   border: 3px solid red;
   border-radius: 10px;
 
   color: white;
+  text-align: center;
 }

@@ -17,7 +17,7 @@
         <span class="input-group-text" id="emailField">
           <i class="fa-solid fa-user"></i>
         </span>
-        <input type="text" class="form-control" name="valueEmail" placeholder="E-mail" aria-label="E-mail" aria-describedby="emailField">
+        <input type="text" class="form-control" name="valueEmail" placeholder="E-mail or username" aria-label="E-mail" aria-describedby="emailField">
       </div>
       <div class="passwordField input-group mb-3">
         <span class="input-group-text" id="usernameField">
@@ -36,7 +36,7 @@
     </form>
     {% if request.session.loginFailed %}
     <div class="loginAlert">
-      Oops! Something went wrong... Maybe your username or password is incorrect?
+      Oops! Maybe your username or password is incorrect?
     </div>
     {% endif %}
   </div>

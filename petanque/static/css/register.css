@@ -12,6 +12,7 @@ body {
 .registerGrid
 {
   place-self: center;
+  width: 20vw;
 }
 
 .registerPanel

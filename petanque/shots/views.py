@@ -12,6 +12,7 @@ def login_view(request):
         username = request.POST.get('valueEmail').split('@')[0]
         password = request.POST.get('valuePassword')
         user = authenticate(request, username=username, password=password)
+        print(user)
         if user is not None:
             request.session['loginFailed'] = False
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
