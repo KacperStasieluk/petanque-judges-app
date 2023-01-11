@@ -16,7 +16,7 @@ def login_view(request):
         if user is not None:
             request.session['loginFailed'] = False
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect(wallView)
+            return redirect(sessions_view)
         else:
             request.session['loginFailed'] = True
             return redirect(login_view)
@@ -46,7 +46,7 @@ def register_view(request):
                 user = User(username=username, email=email, password=password)
                 user.save()
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                return redirect(wallView)
+                return redirect(sessions_view)
             else:
                 request.session['registrationFailedUsername'] = True
         else:
@@ -64,10 +64,10 @@ def create_session_view(request):
     return render(request, 'Petanque/create_session.html', {'form': form})
 
 @login_required
-def session_view(request, code):
-    session = Session.objects.get(code=code)
-    players = session.players.all()
-    return render(request, 'Petanque/session.html', {'session': session, 'players': players})
+def sessions_view(request):
+    sessions = Session.objects.all()
+    #players = session.players.all()
+    return render(request, 'sessions.html', {'sessions': sessions})
 
 @login_required
 def ranking_view(request):

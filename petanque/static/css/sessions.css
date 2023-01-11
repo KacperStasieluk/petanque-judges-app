@@ -1,0 +1,15 @@
+.sessionsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+}
+
+.sessionTile {
+  place-self: center;
+
+  width: 10vw;
+  height: 10vw;
+
+  background: linear-gradient(333deg, rgba(191,0,251,1) 0%, rgba(25,209,255,1) 100%);
+  border-radius: 20px;
+}

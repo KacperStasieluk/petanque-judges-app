@@ -15,6 +15,7 @@ class Judge(models.Model):
 
 class Session(models.Model):
     code = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     players = models.ManyToManyField(Player)
     judges = models.ManyToManyField(Judge)
     status = models.CharField(max_length=255)
