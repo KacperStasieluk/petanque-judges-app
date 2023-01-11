@@ -1,19 +1,57 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.contrib.auth.models import User, Group
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Session, Player
 
 def login_view(request):
+
     if request.method == 'POST':
-        pass
+        username = request.POST.get('valueEmail').split('@')[0]
+        password = request.POST.get('valuePassword')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            request.session['loginFailed'] = False
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect(wallView)
+        else:
+            request.session['loginFailed'] = True
+            return redirect(login_view)
+            # Return an 'invalid login' error message.
+
     return render(request, 'login.html')
 
 def register_view(request):
+
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            # rejestracja użytkownika
-            pass
-    return render(request, 'Petanque/register.html', {'form': form})
+        email = request.POST.get('valueEmail')
+        username = email.split('@')[0]
+        password = request.POST.get('valuePassword')
+        repeatPassword = request.POST.get('valueRepeatPassword')
+
+        request.session['registrationFailedPassword'] = False
+        request.session['registrationFailedUsername'] = False
+        request.session['registrationFailedEmail'] = False
+
+        try:
+            validate_email(email)
+        except ValidationError as e:
+            request.session['registrationFailedEmail'] = True
+
+        if (password != "" and password == repeatPassword):
+            if (not (User.objects.filter(username=username).exists())):
+                user = User(username=username, email=email, password=password)
+                user.save()
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                return redirect(wallView)
+            else:
+                request.session['registrationFailedUsername'] = True
+        else:
+            request.session['registrationFailedPassword'] = True
+
+    return render(request, 'register.html')
 
 @login_required
 def create_session_view(request):

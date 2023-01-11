@@ -9,7 +9,7 @@ body {
   margin: 0;
 }
 
-.loginGrid
+.registerGrid
 {
   place-self: center;
 }
@@ -29,7 +29,6 @@ body {
 .emailField
 {
   grid-column: 1;
-  grid-row: 2;
 
   width: 20vw;
 }
@@ -37,15 +36,13 @@ body {
 .passwordField
 {
   grid-column: 1;
-  grid-row: 3;
 
   width: 20vw;
 }
 
-.loginButton
+.registerButton
 {
   grid-column: 1;
-  grid-row: 4;
 
   margin-bottom: 15px;
 
@@ -58,16 +55,15 @@ body {
   transition: 0.5s;
 }
 
-.loginButton:hover
+.registerButton:hover
 {
   background-color: #42ff75;
   border: 3px solid #42ff75;
 }
 
-.registerButton
+.loginButton
 {
   grid-column: 1;
-  grid-row: 5;
 
   background-color: white;
   border: 3px solid white;
@@ -79,22 +75,22 @@ body {
   transition: 0.5s;
 }
 
-.registerButton:hover
+.loginButton:hover
 {
   background-color: #ff8080;
   border: 3px solid #ff8080;
 }
 
-.loginAlert
+.registerAlert
 {
   grid-column: 1;
-  grid-row: 6;
 
-  padding: 10px;
+  margin: 10px;
 
   background: linear-gradient(312deg, rgba(187,136,0,1) 0%, rgba(255,0,0,1) 100%);
   border: 3px solid red;
   border-radius: 10px;
 
   color: white;
+  text-align: center;
 }
