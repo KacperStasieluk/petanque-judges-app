@@ -1,0 +1,85 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  height: 100vh;
+  width: 100vw;
+
+  margin: 0;
+}
+
+.loginGrid
+{
+  place-self: center;
+}
+
+.registerPanel
+{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+
+  padding: 7px;
+  border-radius: 10px;
+
+  background: linear-gradient(312deg, rgba(0,112,187,1) 0%, rgba(194,0,255,0.47828081232492992) 100%);
+}
+
+.usernameField
+{
+  grid-column: 1;
+  grid-row: 2;
+
+  width: 20vw;
+}
+
+.passwordField
+{
+  grid-column: 1;
+  grid-row: 3;
+
+  width: 20vw;
+}
+
+.loginButton
+{
+  grid-column: 1;
+  grid-row: 4;
+
+  margin-bottom: 15px;
+
+  background-color: white;
+  border: 3px solid white;
+  border-radius: 5px;
+
+  text-align: start;
+  cursor: pointer;
+}
+
+.registerButton
+{
+  grid-column: 1;
+  grid-row: 5;
+
+  background-color: white;
+  border: 3px solid white;
+  border-radius: 5px;
+
+  text-align: start;
+  cursor: pointer;
+}
+
+.loginAlert
+{
+  grid-column: 1;
+  grid-row: 6;
+
+  padding: 10px;
+
+  background: linear-gradient(312deg, rgba(187,136,0,1) 0%, rgba(255,0,0,1) 100%);
+  border: 3px solid red;
+  border-radius: 10px;
+
+  color: white;
+}
