@@ -56,12 +56,16 @@ def register_view(request):
 
 @login_required
 def create_session_view(request):
+
+    players = Player.objects.all()
+
     if request.method == 'POST':
-        form = SessionForm(request.POST)
-        if form.is_valid():
-            # tworzenie nowej sesji
-            pass
-    return render(request, 'Petanque/create_session.html', {'form': form})
+        nextCode = len(Session.objects.all()) + 1
+        players = Player.objects.filter(license_number__in=request.POST.getlist('sessionPlayers'))
+        session = Session(code=nextCode, name=request.POST['sessionName'], players=players)
+        session.save()
+        return redirect(sessions_view)
+    return render(request, 'sessionCreator.html', {'players': players})
 
 @login_required
 def sessions_view(request):

@@ -18,5 +18,5 @@ class Session(models.Model):
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     players = models.ManyToManyField(Player)
-    judges = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    judges = models.ManyToManyField(settings.AUTH_USER_MODEL)
     status = models.CharField(max_length=255)

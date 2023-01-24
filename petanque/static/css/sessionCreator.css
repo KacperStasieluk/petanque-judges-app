@@ -1,9 +1,13 @@
 body {
   display: grid;
+}
+
+.form {
+  display: grid;
   grid-template-columns: 15% 85%;
 }
 
-.sessionsBar {
+.sessionCreatorBar {
   grid-column: 1;
 
   position: sticky;
@@ -18,7 +22,7 @@ body {
   background: #aaaaaa;
 }
 
-.sessionsButton {
+.sessionCreatorButton {
 
   width: 100%;
   height: fit-content;
@@ -31,49 +35,34 @@ body {
   cursor: pointer;
 }
 
-.sessionsGrid {
+.sessionCreatorGrid {
   grid-column: 2;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   grid-gap: 10px;
 
   padding: 10px;
 }
 
-.sessionTile {
-
-  display: grid;
+.sessionPlayers {
+  grid-column: 1;
 
   width: 100%;
-  height: fit-content;
-  padding: 10px;
-
-  background: #bbbbbb;
-  border-radius: 10px;
+  height: 30vh;
 }
 
 .sessionName {
-  place-self: center;
-
-  font-size: 1.5em;
-}
-
-.sessionTable {
-  place-self: center;
-  width: 100%;
-}
-
-.sessionButton {
+  grid-column: 2;
 
   width: 100%;
+  height: 30vh;
+}
 
-  place-self: center;
-  background: #222222;
-  color: white;
-  border-radius: 10px;
-  text-align: center;
+.sessionCode {
+  grid-column: 2;
 
-  cursor: pointer;
+  width: 100%;
+  height: 30vh;
 }
