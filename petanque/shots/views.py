@@ -62,8 +62,13 @@ def create_session_view(request):
     if request.method == 'POST':
         nextCode = len(Session.objects.all()) + 1
         players = Player.objects.filter(license_number__in=request.POST.getlist('sessionPlayers'))
-        session = Session(code=nextCode, name=request.POST['sessionName'], players=players)
+        session = Session(code=nextCode, name=request.POST['sessionName'], status='active')
+
         session.save()
+
+        for player in players:
+            session.players.add(player)
+
         return redirect(sessions_view)
     return render(request, 'sessionCreator.html', {'players': players})
 
@@ -72,6 +77,19 @@ def sessions_view(request):
     sessions = Session.objects.all()
     #players = session.players.all()
     return render(request, 'sessions.html', {'sessions': sessions})
+
+@login_required
+def session_view(request, code):
+
+    session = Session.objects.get(code=code)
+
+    if request.method == 'POST':
+        session.judges.add(request.user)
+
+    joined = False
+    if (request.user in session.judges.all()):
+        joined = True
+    return render(request, 'sessionView.html', {'session': session, 'joined': joined})
 
 @login_required
 def ranking_view(request):

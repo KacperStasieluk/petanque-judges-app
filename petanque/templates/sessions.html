@@ -26,7 +26,7 @@
         <tr><td>JUDGES:</td><td>{{ session.judges.count }}</td></tr>
         <tr><td>STATUS:</td><td>{{ session.status }}</td></tr>
       </table>
-      <div class="sessionButton">ENTER SESSION</div>
+      <div class="sessionButton" onclick="window.location.href='/shots/session/{{ session.code }}'">ENTER SESSION</div>
     </div>
     {% endfor %}
   </div>
