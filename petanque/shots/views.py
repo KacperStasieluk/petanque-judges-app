@@ -89,7 +89,8 @@ def session_view(request, code):
     joined = False
     if (request.user in session.judges.all()):
         joined = True
-    return render(request, 'sessionView.html', {'session': session, 'joined': joined})
+
+    return render(request, 'sessionView.html', {'session': session, 'joined': joined, 'status': session.status})
 
 @login_required
 def ranking_view(request):

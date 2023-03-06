@@ -19,4 +19,4 @@ class Session(models.Model):
     name = models.CharField(max_length=255)
     players = models.ManyToManyField(Player)
     judges = models.ManyToManyField(settings.AUTH_USER_MODEL)
-    status = models.CharField(max_length=255)
+    status = models.CharField(max_length=255, default='lobby') #lobby, active, ended
