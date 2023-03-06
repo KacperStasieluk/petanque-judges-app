@@ -62,7 +62,7 @@ def create_session_view(request):
     if request.method == 'POST':
         nextCode = len(Session.objects.all()) + 1
         players = Player.objects.filter(license_number__in=request.POST.getlist('sessionPlayers'))
-        session = Session(code=nextCode, name=request.POST['sessionName'], status='active')
+        session = Session(code=nextCode, name=request.POST['sessionName'], status='lobby')
 
         session.save()
 
@@ -84,7 +84,15 @@ def session_view(request, code):
     session = Session.objects.get(code=code)
 
     if request.method == 'POST':
-        session.judges.add(request.user)
+        status = request.POST.get('status')
+
+        if (status == 'notJoined'):
+            session.judges.add(request.user)
+        elif (status == 'lobby'):
+            session.status = 'activeEliminations'
+            session.save()
+        elif (status == 'activeEliminations'):
+            pass
 
     joined = False
     if (request.user in session.judges.all()):

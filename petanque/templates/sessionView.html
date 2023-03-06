@@ -15,41 +15,63 @@
     {% csrf_token %}
     <div class="sessionCreatorBar">
       {% if joined %}
-        <button class="sessionCreatorButton" disabled>
-          YOU HAVE ALREADY JOINED THIS SESSION
-        </button>
 
         {% if status == "lobby" %}
-          <button class="sessionStartButton" >
+          <input type="hidden" name="status" value="lobby">
+          <button class="sessionStartButton" type="submit">
             START GAME
           </button>
-        {% elif status == "active" %}
-          <button class="sessionStartButton" >
-            END GAME
+        {% elif status == "activeEliminations" %}
+          <input type="hidden" name="status" value="activeEliminations">
+          <button class="sessionStartButton" type="submit">
+            END ELIMINATIONS
           </button>
         {% else %}
-
+          <button class="sessionCreatorButton" disabled>
+            YOU HAVE ALREADY JOINED THIS SESSION
+          </button>
         {% endif %}
 
       {% else %}
+        <input type="hidden" name="status" value="notJoined">
         <button class="sessionCreatorButton" type="submit">
           JOIN SESSION
         </button>
       {% endif %}
     </div>
+  </form>
 
+
+    <div class="sessionPanel">
     {% if joined %}
       NORMALNE WESZŁEŚ TEGO
 
       {% if status == "lobby" %}
 
-      {% elif status == "active" %}
+        <table>
+          <tr><td>GRACZ</td></tr>
+          {% for player in session.players.all %}
+            <tr><td>{{ player.name }} {{ player.surname }}</td></tr>
+          {% endfor %}
+        </table>
+
+      {% elif status == "activeEliminations" %}
+
+        <table>
+          <tr><td>GRACZ</td><td>AKCJA</td></tr>
+          {% for player in session.players.all %}
+            <tr><td>{{ player.name }} {{ player.surname }}</td><td><button>OCEŃ</button></td></tr>
+          {% endfor %}
+        </table>
+
+      {% elif status == "activePlayoff" %}
 
       {% else %}
 
       {% endif %}
 
     {% endif %}
-  </form>
+    </div>
+
 
 </body>
