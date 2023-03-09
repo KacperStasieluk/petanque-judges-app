@@ -60,7 +60,14 @@
         <table>
           <tr><td>GRACZ</td><td>AKCJA</td></tr>
           {% for player in session.players.all %}
-            <tr><td>{{ player.name }} {{ player.surname }}</td><td><button>OCEŃ</button></td></tr>
+            <tr>
+              <td>{{ player.name }} {{ player.surname }}</td>
+              {% if player.judge %}
+              <td><button disabled>OCENIANY PRZEZ: {{ player.judge }}</button></td>
+              {% else %}
+              <td><button>OCEŃ</button></td>
+              {% endif %}
+            </tr>
           {% endfor %}
         </table>
 
